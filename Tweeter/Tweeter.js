@@ -39,9 +39,8 @@ const Tweeter = function () {
     _postIdCounter++;
     _posts.push({ text: str, id: `p${_postIdCounter}`, comments: [] });
   };
-  const removePost = function (str) {
-    _postIdCounter--;
-    _posts = _posts.filter((post) => post.id != str);
+  const removePost = function (postId) {
+    _posts = _posts.filter((post) => post.id != postId);
   };
 
   const addComment = function (str, id) {
@@ -56,12 +55,11 @@ const Tweeter = function () {
     });
   };
 
-  const removeComment = function (postID, commentID) {
+  const removeComment = function (postId, commentId) {
     _posts.filter((post) => {
-      if (post.id == postID) {
-        _commentIdCounter--;
+      if (post.id == postId) {
         post.comments = post.comments.filter(
-          (comment) => comment.id != commentID
+          (comment) => comment.id != commentId
         );
       }
     });
@@ -75,4 +73,3 @@ const Tweeter = function () {
     removeComment,
   };
 };
-
